@@ -1,17 +1,22 @@
 // Uncomment the code below and write your tests
-/* import {  simpleCalculator, Action } from './index';
+import { simpleCalculator, Action } from './index';
 
 const testCases = [
-    { a: 1, b: 2, action: Action.Add, expected: 3 },
-    { a: 2, b: 2, action: Action.Add, expected: 4 },
-    { a: 3, b: 2, action: Action.Add, expected: 5 },
-    // continue cases for other actions    
-]; */
+  // [1, 2,  Action.Add, 3]
+  [4, 3, Action.Subtract, 1],
+  [4, 3, Action.Multiply, 12],
+  [10, 5, Action.Divide, 2],
+  [2, 3, Action.Exponentiate, 8],
+  [2, 3, '++', null],
+  ['2', 3, Action.Exponentiate, null],
+];
 
 describe('simpleCalculator', () => {
-  // This test case is just to run this test suite, remove it when you write your own tests
-  test('should blah-blah', () => {
-    expect(true).toBe(true);
-  });
+  test.each(testCases)(
+    'validateEmail(%s) should be %s',
+    (a, b, action, expected) => {
+      expect(simpleCalculator({ a, b, action })).toBe(expected);
+    },
+  );
   // Consider to use Jest table tests API to test all cases above
 });
